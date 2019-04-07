@@ -1,5 +1,5 @@
 {
-    "@context": "file:///C:/Users/ivani/Desktop/manic/contexts/person.json",
+    "@context": "https://manicjs.github.io/website/contexts/person.json",
     "@type": "Person",
     "@id": "https://github.com/foxyboss",
     "name": "foxyboss",
