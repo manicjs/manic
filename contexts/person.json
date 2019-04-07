@@ -1,0 +1,32 @@
+{
+    "@context": {
+        "@version": 0.1,
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "schema": "http://schema.org/",
+        "Person": "foaf:Person",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "name": "foaf:name",
+        "email": "schema.email",
+        "username": "foaf:nick",
+        "joined": {
+            "@id": "xsd:dateTime",
+            "@type": "xsd:dateTime"
+        },
+        "knowsLanguage": {
+            "@id": "schema:knowsLanguage",
+            "@type": "@id"
+        },
+        "homepage": {
+            "@id": "foaf:homepage",
+            "@type": "@id"
+        },
+        "avatar": {
+            "@id": "foaf:image",
+            "@type": "@id"
+        },
+        "knows": {
+            "@id": "foaf:knows",
+            "@type": "@id"
+        }
+    }
+}

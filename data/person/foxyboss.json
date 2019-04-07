@@ -1,0 +1,7 @@
+{
+    "@context": "file:///C:/Users/ivani/Desktop/manic/contexts/person.json",
+    "@type": "Person",
+    "@id": "https://github.com/foxyboss",
+    "name": "foxyboss",
+    "url": "https://github.com/foxyboss"
+}
