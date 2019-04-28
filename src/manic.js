@@ -58,6 +58,7 @@ var Manic = (function(doc){
     const load = async function(context, file, extension) {
         return await fetch("./" + context + "/" + file + "." + extension);
     };
+
     const getContext = async function(file) {
         return await load("contexts", file, "json");
     };
@@ -73,9 +74,9 @@ var Manic = (function(doc){
      */
     const appendScript = async function(file) {
         let script = await load("js", file, "js");
-        var s = d.createElement("script");
+        var s = doc.createElement("script");
         s.src = script.url;
-        d.body.appendChild(s);
+        doc.body.appendChild(s);
     };
 
     doc.onreadystatechange = () => {
@@ -85,8 +86,8 @@ var Manic = (function(doc){
             for (let j = 0; j < i; j++){
                 doc.getElementsByTagName("a")[j].addEventListener("click", event => {
                     /**
-                    * @todo: add a custom click event handler
-                    */
+                     * @todo: handle/trigger click events
+                     */
                     event.preventDefault();
                 });
             }
@@ -98,5 +99,4 @@ var Manic = (function(doc){
         getData : getData,
         appendScript : appendScript
     };
-
 }(document));
