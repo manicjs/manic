@@ -60,11 +60,11 @@ var Manic = (function(doc){
     };
 
     const getContext = async function(file) {
-        return await load("contexts", file, "json");
+        return await load("contexts", file, "jsonld");
     };
 
     const getData = async function(context, file) {
-        return await load("data/" + context, file, "json");
+        return await load("data/" + context, file, "jsonld");
     };
 
     /**

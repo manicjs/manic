@@ -1,13 +1,25 @@
 {
     "@context": {
-        "@version": 0.1,
-        "foaf": "http://xmlns.com/foaf/0.1/",
+        "@version": 1.1,
+        "foaf": "http://xmlns.com/foaf/spec/#",
         "schema": "http://schema.org/",
-        "Person": "foaf:Person",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "xsdt": "https://www.w3.org/TR/xmlschema11-2/#",
+        "Person": "foaf:Person",
         "name": "foaf:name",
-        "email": "schema.email",
+        "birthDate": "schema:birthDate",
+        "email": "schema:email",
+        "address": "schema:address",
+        "addressCountry": "schema:addressCountry",
+        "addressRegion": "schema:addressRegion",
+        "addressLocality": "schema:addressLocality",
         "username": "foaf:nick",
+        "url": "schema:url",
+        "description" : "schema:description",
+        "sameAs": {
+            "@id": "schema:sameAs",
+            "@type": "@id"
+        },
         "joined": {
             "@id": "xsd:dateTime",
             "@type": "xsd:dateTime"

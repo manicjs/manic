@@ -1,0 +1,25 @@
+{
+    "@context": "https://manicjs.github.io/manic/contexts/package.json",
+    "@type": "Package",
+    "name": "Manic",
+    "homepage": "https://manicjs.github.io",
+    "created": "2013-06-19",
+    "description": "A JavaScript framework manager.",
+    "programming-language": "JavaScript",
+    "issue-tracker": "https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+repo%3Amanicjs%2Fmanic",
+    "repository" : {
+        "browse": "https://github.com/manicjs/manic/",
+        "location": "https://github.com/manicjs/manic.git"
+    },
+    "release": {
+        "revision": "2.1.1",
+        "created": "2017-04-15",
+        "download": "https://github.com/manicjs/manicjs.github.io/releases/tag/v2.1.1"
+    },
+    "developer": {
+        "@type": "Person",
+        "@id": "https://mrisaacs.org"
+    },
+    "download": "https://github.com/manicjs/manicjs.github.io/releases",
+    "license": "https://opensource.org/licenses/MIT"
+}
