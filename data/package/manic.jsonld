@@ -2,9 +2,9 @@
     "@context": "https://manicjs.github.io/manic/contexts/package.json",
     "@type": "Package",
     "name": "Manic",
+    "description": "A semantic JavaScript framework manager.",
     "homepage": "https://manicjs.github.io",
     "created": "2013-06-19",
-    "description": "A JavaScript framework manager.",
     "programming-language": "JavaScript",
     "issue-tracker": "https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+repo%3Amanicjs%2Fmanic",
     "repository" : {
