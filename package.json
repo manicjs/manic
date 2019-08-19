@@ -1,0 +1,31 @@
+{
+  "name": "Manic",
+  "description": "Managing different javascript frameworks.",
+  "homepage": "http://mrisaacs.org/manic",
+  "version": "3.0.1",
+  "author": {
+    "name": "Ivan Ilic",
+    "email": "me@mrisaacs.org",
+    "url": "http://mrisaacs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MrIsaacs/manic.git",
+    "web": "https://github.com/MrIsaacs/manic"
+  },
+  "license": "MIT",
+  "main": "./src/manic.js",
+  "dependencies": {},
+  "devDependencies": {
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^3.19.0"
+  },
+  "scripts": {
+    "test": ".\\.node_modules\\.bin\\jasmine-node .\\test",
+    "docco": ".\\.node_modueles\\.bin\\docco .\\js\\*.js"
+  },
+  "bugs": {
+    "url": "https://github.com/MrIsaacs/manic/issues"
+  }
+}
