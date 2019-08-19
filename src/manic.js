@@ -2,7 +2,7 @@
 /**
  * @fileOverview A JavaScript framework manager.
  * @author Ivan Ilic <me@mrisaacs.org>
- * @version 3.0.0
+ * @version 3.0.1
  */
 var Manic = (function(doc){
     const _this = {
@@ -49,90 +49,22 @@ var Manic = (function(doc){
                 }
             }),
             framework: {
-                url: ["mootools","mootools-more"],
-                init: () => {
-                    _this.contextMgr.push($$("div#wrapper ^ div")[0]);
-                    _this.contextMgr.push($$(".article-layer")[0]);
-                }
+                url: ['mootools','mootools-more'],
+                init: 'Y29uc29sZS5sb2coImxvYWRlZDogZnJhbWV3b3JrIik7CndpbmRvdy5NYW5pYy5jb250ZXh0TWdyPXsKd3JhcHBlcjokJCgiZGl2I3dyYXBwZXIgXiBkaXYiKVswXSwKYXJ0aWNsZTokJCgiLmFydGljbGUtbGF5ZXIiKVswXQp9Ow=='
             },
             route: {
-                url: "navigo",
-                instance : "undefined",
-                init: () => {
-                    let url = new URL(window.location.href);
-                    let searchParams = new URLSearchParams(url.search);
-
-                    /**
-                     * @todo If URL changes, pass over search params trigger
-                     * reuqestchange with the
-                     */
-                    on("requestchange", () => {
-                        /**
-                         * @todo This block must be triggerd on urlchange.
-                         */
-                        searchParams.set("q", _this.request.slug);
-
-                        if(_this.request.type === "list") {
-                            searchParams.set("type", _this.request.type || "list");
-                        } else {
-                            searchParams.delete("type");
-                        }
-
-                        if(_this.request.id) {
-                            searchParams.set("id", _this.request.id);
-                        } else {
-                            searchParams.delete("id");
-                        }
-
-                        var stateObj = { foo: "bar" };
-                        history.pushState(
-                            stateObj,
-                            "Manic" + (_this.request.slug).toUpperCase(),
-                            "?" + searchParams.toString()
-                        );
-
-                        /**
-                         * @todo: in the end it must render a node, not a slug
-                         */
-                        render(_this.request.slug);
-                    });
-                }
+                url: 'navigo',
+                instance : 'undefined',
+                init: 'Y29uc29sZS5sb2coImxvYWRlZDogcm91dGUiKTsKbGV0IG9uID0gd2luZG93Lk1hbmljLm9uOwpsZXQgdHJpZ2dlciA9IHdpbmRvdy5NYW5pYy50cmlnZ2VyOwpsZXQgcmVuZGVyID0gd2luZG93Lk1hbmljLnJlbmRlcjsKbGV0IHVybCA9IG5ldyBVUkwod2luZG93LmxvY2F0aW9uLmhyZWYpOwpsZXQgc2VhcmNoUGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcyh1cmwuc2VhcmNoKTsKCm9uKCJyZXF1ZXN0VXJsQ2hhbmdlIiwgKHBhcmFtcykgPT4gewogICAgd2luZG93Lk1hbmljLnJlcXVlc3QgPSBwYXJhbXM7CgogICAgc2VhcmNoUGFyYW1zLnNldCgicSIsIHBhcmFtcy5zbHVnKTsKCiAgICBpZihwYXJhbXMudHlwZSA9PT0gImxpc3QiKSB7CiAgICAgICAgc2VhcmNoUGFyYW1zLnNldCgidHlwZSIsIHBhcmFtcy50eXBlIHx8ICJsaXN0Iik7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoInR5cGUiKTsKICAgIH0KCiAgICBpZihwYXJhbXMuaWQpIHsKICAgICAgICBzZWFyY2hQYXJhbXMuc2V0KCJpZCIsIHBhcmFtcy5pZCk7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoImlkIik7CiAgICB9CgogICAgdmFyIHN0YXRlT2JqID0ge2ZvbzogImJhciJ9OwogICAgaGlzdG9yeS5wdXNoU3RhdGUoCiAgICAgICAgc3RhdGVPYmosCiAgICAgICAgIk1hbmljIiArIChwYXJhbXMuc2x1ZykudG9VcHBlckNhc2UoKSwKICAgICAgICAiPyIgKyBzZWFyY2hQYXJhbXMudG9TdHJpbmcoKQogICAgKTsKCiAgICAvKnRyaWdnZXIoInJlbmRlciIsIHBhcmFtcy5zbHVnKSovCiAgICByZW5kZXIocGFyYW1zLnNsdWcpOwp9KTs='
             },
             markdown: {
-                url: ["showdown", "moodown"],
+                url: ['showdown', 'moodown'],
                 handle: (request, next) => {
                     return next(request);
                 },
-                refresh: "undefined",
-                init: () => {
-                    /**
-                     * @todo It seems that the click event is trigger twice.
-                     * Prevent eventlistener in the same custom event.
-                     */
-                    on("urlchange", () => {
-                        let i = document.getElementsByTagName("a").length;
-
-                        for (let j = 0; j < i; j++){
-                            document.getElementsByTagName("a")[j].addEventListener("click", event => {
-                                event.preventDefault();
-
-                                _this.request.id = event.target.dataset.hasOwnProperty("id") ? event.target.dataset.id : null;
-                                _this.request.type = event.target.dataset.hasOwnProperty("id") ? "info" : "list";
-                                _this.request.slug = event.target.dataset.link;
-
-                                /**
-                                 * @todo move requestchange basics to the core.
-                                 * @todo pass over _request parameter
-                                 */
-                                trigger("requestchange", {
-                                    id : event.target.dataset.hasOwnProperty("id") ? event.target.dataset.id : null,
-                                    type : event.target.dataset.hasOwnProperty("id") ? "info" : "list",
-                                    slug : event.target.dataset.link
-                                });
-                            });
-                        }
-                    });
-                }
+                MooDown: null,
+                refresh: 'undefined',
+                init: 'Y29uc29sZS5sb2coImxvYWRlZDogbWFya2Rvd24iKTsKbGV0IG9uID0gd2luZG93Lk1hbmljLm9uOwpsZXQgdHJpZ2dlciA9IHdpbmRvdy5NYW5pYy50cmlnZ2VyOwpsZXQgcmVxdWVzdCA9IHdpbmRvdy5NYW5pYy5yZXF1ZXN0OwpsZXQgcmVuZGVyID0gd2luZG93Lk1hbmljLnJlbmRlcjsKd2luZG93Lk1hbmljLnNlcnZpY2VzLm1hcmtkb3duLk1vb0Rvd24gPSBNb29Eb3duOwoKb24oInJlcXVlc3RVcmxDaGFuZ2UiLCAoKSA9PiB7CiAgICBsZXQgaSA9IGRvY3VtZW50LmdldEVsZW1lbnRzQnlUYWdOYW1lKCJhIikubGVuZ3RoOwoKICAgIGZvciAobGV0IGogPSAwOyBqIDwgaTsgaisrKXsKICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50c0J5VGFnTmFtZSgiYSIpW2pdLmFkZEV2ZW50TGlzdGVuZXIoImNsaWNrIiwgZXZlbnQgPT4gewogICAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOwoKICAgICAgICAgICAgcmVxdWVzdC5pZCA9IGV2ZW50LnRhcmdldC5kYXRhc2V0Lmhhc093blByb3BlcnR5KCJpZCIpID8gZXZlbnQudGFyZ2V0LmRhdGFzZXQuaWQgOiBudWxsOwogICAgICAgICAgICByZXF1ZXN0LnR5cGUgPSBldmVudC50YXJnZXQuZGF0YXNldC5oYXNPd25Qcm9wZXJ0eSgiaWQiKSA/ICJpbmZvIiA6ICJsaXN0IjsKICAgICAgICAgICAgcmVxdWVzdC5zbHVnID0gZXZlbnQudGFyZ2V0LmRhdGFzZXQubGluazsKCiAgICAgICAgICAgIHRyaWdnZXIoInJlcXVlc3RjaGFuZ2UiLCB7CiAgICAgICAgICAgICAgICBpZCA6IGV2ZW50LnRhcmdldC5kYXRhc2V0Lmhhc093blByb3BlcnR5KCJpZCIpID8gZXZlbnQudGFyZ2V0LmRhdGFzZXQuaWQgOiBudWxsLAogICAgICAgICAgICAgICAgdHlwZSA6IGV2ZW50LnRhcmdldC5kYXRhc2V0Lmhhc093blByb3BlcnR5KCJpZCIpID8gImluZm8iIDogImxpc3QiLAogICAgICAgICAgICAgICAgc2x1ZyA6IGV2ZW50LnRhcmdldC5kYXRhc2V0LmxpbmsKICAgICAgICAgICAgfSk7CgogICAgICAgICAgICByZW5kZXIocmVxdWVzdC5zbHVnKTsKICAgICAgICB9KTsKICAgIH0KfSk7'
             }
         },
         /**
@@ -144,7 +76,7 @@ var Manic = (function(doc){
         version : {
             major: 3,
             minor: 0,
-            patch: 0
+            patch: 1
         },
         /**
          * @type {Object}
@@ -247,7 +179,7 @@ var Manic = (function(doc){
                 }
             }
         }
-    }
+    };
 
     /**
      * Triggers eventName as a function and assigns data as parameter.
@@ -261,7 +193,7 @@ var Manic = (function(doc){
                 fn(data);
             });
         }
-    }
+    };
 
     const load = async function(context, file, extension) {
         return await fetch("./" + context + "/" + file + "." + extension);
@@ -278,6 +210,14 @@ var Manic = (function(doc){
     };
 
     /**
+     * @since 2.1.1
+     * @param {string} url URL to load the JSON file
+     */
+    const loadJSON = async function(url) {
+        return await load('data', url, 'json');
+    };
+
+    /**
      * Registers the service in a stack when loading services.
      * Just registered services can be initialized.
      * Register service reads the configuration jsonld file before
@@ -289,76 +229,55 @@ var Manic = (function(doc){
     }
 
     /**
-     * Load service and initialize if function _init_ exists. If `service.url`
-     * is an array of URL's, then load every index, before calling _init_
-     * @since 2.2.0
-     * @param {Service} service
+     * Get source code and invoke it with given _init_ code. If `service.url` is an array of
+     * URL's, then load every index, before calling _init_.
+     * @since 2.1.1
+     * @todo check if `service.init` exists
+     * @param {Object} service An object in form of {url: 'someUrl',init: 'someBase64StringCode'}
      */
-    const loadServices = function(service) {
-        console.log("==============");
-        console.log(service);
+    const initializeService = async function(service) {
+        let codeScope = '';
+
         if (isArray(service.url)) {
-            service.url.map(function(item){
-                return initializeService(service, item);
+            return service.url.reduce((sequence, url) => {
+                return sequence.then(function() {
+                    return getSourceCode(url);
+                }).then(function(code) {
+                    codeScope += code;
+                });
+            }, Promise.resolve(
+            )).then(function() {
+                new Function(codeScope + atob(service.init))();
             });
         } else {
-            return initializeService(service, [service.url]);
+            return getSourceCode(service.url).then((code) => {
+                new Function(code + atob(service.init))();
+            });
         }
     };
 
-    const initializeService = function() {
-        let service = arguments[0];
-        let url = arguments[1];
-
-        if (1) {
-            console.log("hasOwnProperty: " + service.hasOwnProperty("init"));
-            console.log("isArray: " + isArray(service.url));
-            console.log("Last element: " + (isArray(service.url)?service.url[service.url.length-1]:url));
-            console.log("url: " + url);
-            // console.log(isArray(service.url)&&(service.url[service.url.length-1]===url));
-
-        }
-        // console.log(service.hasOwnProperty("init") && isArray(service.url));
-
-        return loadJS(url).then(response => {
-            injectScript(response)
-            .then(()=>{
-
-                if ( (
-                     isArray(service.url)
-                       ? service.url[service.url.length-1]
-                       : url
-                     ) == url
-                   ) {
-                    // console.log("===== so true: " + url);
-                    service.init(new Function(response.script)());
-                }
-            });
-        });
-    }
-
     /**
-     * Iterate through services and call `loadServices` for each service.
+     * Iterate through services and initialize collection of services for
+     * each service.
      * @since 2.0.0
-     * @todo redefine scriptCollection
-     * @return {string} Injects scrtipts for each needed service at the
-     *                  bottom of the document, before body ends.
+     * @return {Promise} Returns a Promise which initializes each service-
+     *                   collection.
      */
-    const scriptCollection = function() {
+    const loadServices = function() {
         let services = _this[Symbol.for('services')];
         let sequence = Promise.resolve();
 
         for (let service of services) {
             sequence = sequence.then(() => {
-                return loadServices(service);
+                return initializeService(service);
             });
         }
-    }
+    };
 
     const registerService = async function(){};
 
     /**
-     * Injects script to document before body ends. Called by `loadServices`.
+     * Injects script in document before body ends. Called by `loadServices`.
      * @todo Bind each script with its service.
      * @since 2.2.0
      * @param {Object} response
@@ -380,21 +299,188 @@ var Manic = (function(doc){
     };
 
     /**
-     * @todo: add `getScript` to request a script from the
-     *        package inventory, which returns the library
-     *        with some metadata
+     * @param {string} filename A JavaScript filename.
+     * @return {Promise} Returns a Promise of the source code.
      */
-    const appendScript = function(file) {
-        let script = load("js", file, "js");
-        var s = doc.createElement("script");
-        s.src = script.url;
-        doc.body.appendChild(s);
+    const getSourceCode = function(filename) {
+        let script = load('js', filename, 'js');
+
+        return script.then((data) => {
+            return data.text().then((code) => {
+                return code;
+            });
+        });
+    };
+
+    /**
+     * Renders the content of the requested size.
+     * Renamed in version 3.0.0 from content to render
+     * @since 2.1.1
+     * @param {string} site The Slug of a site to be rendered.
+     */
+    const render = function(site) {
+        'use strict';
+
+        loadJSON(site).then(response => {
+            return response.text().then(stringData => {
+                return JSON.parse(stringData);
+            }).then(json => {
+                // start loading animation
+                if(_this.request.type === 'info') {
+                    // show shimmer animation
+                    $$('.article-layer').addClass('hidden no-anim');
+                    $$('.shimmer-layer').addClass('no-anim');
+                    $$('.shimmer-layer').removeClass('hidden');
+
+                    // @todo: check if the same info were requested
+                    if ($('list')) {
+                        $('list').destroy();
+                    }
+                } else if (_this.request.type === 'list') {
+                    // todo: check if the same list were requested
+                    if ($('detail')) {
+                        $('detail').destroy();
+                    }
+                }
+                return json;
+            });
+        }).then(response => {
+            let services = _this[Symbol.for('services')];
+            let MooDown = services.markdown.MooDown;
+            // todo: extract info and list as functions
+            // INFO
+            if(_this.request.type === 'info') {
+                var requestID   = _this.request.id;
+                var index       = response.index[requestID.toString()];
+                var article     = response.data[index];
+                // todo: use addAttribute
+                var content = `<div class=\"one-third column\">
+                                  <a class=\"avatar-wrapper\">
+                                      <span class=\"initial\">
+                                        M
+                                      </span>
+                                      <span class=\"integral\">
+                                        ∫
+                                      </span>
+                                  </a>
+                              </div>`;
+
+                // prevent a second detail-element is being created
+                // when one already exists
+                if (!$('detail')) {
+                    var detail = new Element('div',{
+                        'id'    : 'detail',
+                        'class' : 'row section content',
+                        html    : content
+                    }).inject(_this.contextMgr.container, 'bottom');
+                    new Element('div',{
+                        'class' : 'main-article two-thirds column',
+                        html    : `<div class=\"article-layer\">
+                                  <h1 id=\"main-title\"></h1>
+                                  <p id=\"main-date\"></p>
+                                  <p id=\"main-body\"></p>
+                                  </div>`
+                    }).inject(detail);
+                }
+
+                // todo: exchange document title with a variable
+                document.title = 'Manic - ' + article.title;
+
+                $('main-title').set('text', article.title);
+                $('main-date').set('text', new Date(article.date).timeDiffInWords());
+                $('main-date').set('title', article.date);
+
+                new MooDown('main-body', {
+                    markdown    : article.body
+                });
+            }
+            // LIST
+            else if(_this.request.type === 'list') {
+                // last added content in json files must go to data[0]
+                var id = response.data[0].id;
+                var container = [];
+
+                if (!$('list')) {
+                    for(let i = 0; i < response.data.length; i++) {
+                        let index   = response.index[id];
+                        let content = '';
+                        /**
+                         * push a section to the container
+                         */
+                        if(!(i % 3)) {
+                            container.push(new Element('div', {
+                                'class' : 'row section list'
+                            }));
+                        }
+                        // todo: use addAttribute
+                        content += '<h3><a data-navigo data-id=\"';
+                        content += response.data[index].id;
+                        content += '\" href=\"';
+                        content += response.data[index].link + '/' + response.data[index].id;
+                        content += '\" data-link=\"';
+                        content += response.data[index].link;
+                        content += '\">';
+                        content += response.data[index].title;
+                        content += '</a></h3>';
+                        content += '<p>';
+                        content += response.data[index].short;
+                        content += '</p>';
+                        /**
+                         * add new element to the bottom in the
+                         * current container
+                         */
+                        new Element('div',{
+                            'class' : 'short-article one-third column',
+                            html    : content
+                        }).inject(container[container.length - 1], 'bottom');
+                        // if the previous id isn't null get previous
+                        if(prev(response, id) !== null) {
+                            id = prev(response, id).id;
+                        }
+                    }
+                    new Element('div',{
+                        'id'    : 'list'
+                    }).inject($('wrapper').getFirst());
+                    for(var i = container.length - 1; i >= 0; i--) {
+                        container[i].inject($('list'), 'top');
+                    }
+                }
+
+                // todo: exchange document title with a variable
+                document.title = 'Manic - ';// + article.title;
+            }
+
+            // hide shimmer animation
+            $$('.shimmer-layer').removeClass('no-anim');
+            $$('.shimmer-layer').addClass('hidden');
+            $$('.article-layer').removeClass('hidden no-anim');
+
+            if (typeof services.markdown.refresh === 'function') {
+                // safe to use the function
+                services.markdown.refresh();
+                services.router.instance.updatePageLinks();
+            } else {
+            }
+        });
+    };
+
+    /**
+     * @since 1.1.2
+     * @returns {?Object}
+     */
+    const prev = function(db, key) {
+        'use strict';
+        var next = db.index[key] + 1;
+        if(next >= db.data.length) {
+            return null;
+        }
+        return db.data[next];
     };
 
     /**
      * Defines the urlchange event. Call requestchange event if url
-     * has changed. / Tracks an urlchange event occurs.
-     * @todo It seems that the click event is trigger twice. Pprevent same
+     * has changed. / Tracks if an urlchange event occurs.
+     * @todo It seems that the click event is trigger twice. Prevent same
      * eventlistener in the same custom event.
      */
     on("urlchange", () => {
@@ -417,11 +503,21 @@ var Manic = (function(doc){
 
     doc.onreadystatechange = async() => {
         // Core Level 3 Document Object readyState
-        if (doc.readyState === "complete") {
-            var i = doc.getElementsByTagName("a").length;
+        if (doc.readyState === 'complete') {
+            var i = doc.getElementsByTagName('a').length;
             for (let j = 0; j < i; j++){
-                doc.getElementsByTagName("a")[j].addEventListener("click", event => {
-                    // this.trigger("urlchange");
+                doc.getElementsByTagName('a')[j].addEventListener('click', event => {
+                    let hasId = event.target.dataset.hasOwnProperty('id');
+
+                    trigger('requestUrlChange', {
+                        id: hasId ?
+                            event.target.dataset.id :
+                            null,
+                        slug: event.target.dataset.link,
+                        type: hasId ?
+                            'info' :
+                            'list'
+                    });
                     /**
                      * @todo: handle/trigger click events
                      */
@@ -429,15 +525,21 @@ var Manic = (function(doc){
                 });
             }
 
-            scriptCollection();
+            loadServices();
         }
     };
 
     return {
-        getContext : getContext,
-        getData : getData,
-        appendScript : appendScript,
-        version : version,
-        services : _this[Symbol.for('services')]
+        getContext: getContext,
+        getData: getData,
+        getSourceCode: getSourceCode,
+        version: version,
+        services: _this[Symbol.for('services')],
+        render: render,
+        contextMgr: _this.contextMgr,
+        request: _this.request,
+        on: on,
+        off: off,
+        trigger: trigger
     };
 }(document));
