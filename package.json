@@ -19,13 +19,14 @@
   "devDependencies": {
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^3.19.0"
+    "eslint": "^3.19.0",
+    "mocha": "^6.2.0",
+    "testem": "^2.17.0"
   },
   "scripts": {
-    "test": ".\\.node_modules\\.bin\\jasmine-node .\\test",
-    "docco": ".\\.node_modueles\\.bin\\docco .\\js\\*.js"
+    "test": ".\\node_modules\\.bin\\mocha"
   },
   "bugs": {
-    "url": "https://github.com/MrIsaacs/manic/issues"
+    "url": "https://github.com/manicjs/manic/issues"
   }
 }
