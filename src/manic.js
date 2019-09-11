@@ -2,7 +2,7 @@
 /**
  * @fileOverview A JavaScript framework manager.
  * @author Ivan Ilic <me@mrisaacs.org>
- * @version 3.0.1
+ * @version 3.0.2
  */
 var Manic = (function(doc){
     const _this = {
@@ -76,7 +76,7 @@ var Manic = (function(doc){
         version : {
             major: 3,
             minor: 0,
-            patch: 1
+            patch: 2
         },
         /**
          * @type {Object}
@@ -243,15 +243,15 @@ var Manic = (function(doc){
                 return sequence.then(function() {
                     return getSourceCode(url);
                 }).then(function(code) {
-                    codeScope += code;
+                    codeScope += code + '\n';
                 });
             }, Promise.resolve(
             )).then(function() {
-                new Function(codeScope + atob(service.init))();
+                new Function(codeScope + '\n' + atob(service.init))();
             });
         } else {
             return getSourceCode(service.url).then((code) => {
-                new Function(code + atob(service.init))();
+                new Function(code + '\n' + atob(service.init))();
             });
         }
     };
