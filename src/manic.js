@@ -2,7 +2,7 @@
 /**
  * @fileOverview A JavaScript framework manager.
  * @author Ivan Ilic <me@mrisaacs.org>
- * @version 3.0.2
+ * @version 3.0.3
  */
 var Manic = (function(doc){
     const _this = {
@@ -50,12 +50,12 @@ var Manic = (function(doc){
             }),
             framework: {
                 url: ['mootools','mootools-more'],
-                init: 'Y29uc29sZS5sb2coImxvYWRlZDogZnJhbWV3b3JrIik7CndpbmRvdy5NYW5pYy5jb250ZXh0TWdyPXsKd3JhcHBlcjokJCgiZGl2I3dyYXBwZXIgXiBkaXYiKVswXSwKYXJ0aWNsZTokJCgiLmFydGljbGUtbGF5ZXIiKVswXQp9Ow=='
+                init: 'Y29uc29sZS5sb2coImxvYWRlZDogZnJhbWV3b3JrIik7CndpbmRvdy5NYW5pYy5zZXJ2aWNlcy5mcmFtZXdvcmsuRWxlbWVudCA9IEVsZW1lbnQ7CndpbmRvdy5NYW5pYy5jb250ZXh0TWdyPXsKICAgIHdyYXBwZXI6ICQkKCJkaXYjd3JhcHBlciBeIGRpdiIpWzBdLAogICAgYXJ0aWNsZTogJCQoIi5hcnRpY2xlLWxheWVyIilbMF0sCiAgICBkZXRhaWw6ICQoJ2RldGFpbCcpLAogICAgbGlzdDogJCgnbGlzdCcpLAogICAgdGl0bGU6ICQoJ21haW4tdGl0bGUnKSwKICAgIGRhdGU6ICQoJ21haW4tZGF0ZScpLAogICAgc2hpbW1lcjogJCQoJ3NoaW1tZXItbGF5ZXInKQp9Ow=='
             },
             route: {
                 url: 'navigo',
                 instance : 'undefined',
-                init: 'Y29uc29sZS5sb2coImxvYWRlZDogcm91dGUiKTsKbGV0IG9uID0gd2luZG93Lk1hbmljLm9uOwpsZXQgdHJpZ2dlciA9IHdpbmRvdy5NYW5pYy50cmlnZ2VyOwpsZXQgcmVuZGVyID0gd2luZG93Lk1hbmljLnJlbmRlcjsKbGV0IHVybCA9IG5ldyBVUkwod2luZG93LmxvY2F0aW9uLmhyZWYpOwpsZXQgc2VhcmNoUGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcyh1cmwuc2VhcmNoKTsKCm9uKCJyZXF1ZXN0VXJsQ2hhbmdlIiwgKHBhcmFtcykgPT4gewogICAgd2luZG93Lk1hbmljLnJlcXVlc3QgPSBwYXJhbXM7CgogICAgc2VhcmNoUGFyYW1zLnNldCgicSIsIHBhcmFtcy5zbHVnKTsKCiAgICBpZihwYXJhbXMudHlwZSA9PT0gImxpc3QiKSB7CiAgICAgICAgc2VhcmNoUGFyYW1zLnNldCgidHlwZSIsIHBhcmFtcy50eXBlIHx8ICJsaXN0Iik7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoInR5cGUiKTsKICAgIH0KCiAgICBpZihwYXJhbXMuaWQpIHsKICAgICAgICBzZWFyY2hQYXJhbXMuc2V0KCJpZCIsIHBhcmFtcy5pZCk7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoImlkIik7CiAgICB9CgogICAgdmFyIHN0YXRlT2JqID0ge2ZvbzogImJhciJ9OwogICAgaGlzdG9yeS5wdXNoU3RhdGUoCiAgICAgICAgc3RhdGVPYmosCiAgICAgICAgIk1hbmljIiArIChwYXJhbXMuc2x1ZykudG9VcHBlckNhc2UoKSwKICAgICAgICAiPyIgKyBzZWFyY2hQYXJhbXMudG9TdHJpbmcoKQogICAgKTsKCiAgICAvKnRyaWdnZXIoInJlbmRlciIsIHBhcmFtcy5zbHVnKSovCiAgICByZW5kZXIocGFyYW1zLnNsdWcpOwp9KTs='
+                init: 'Y29uc29sZS5sb2coImxvYWRlZDogcm91dGUiKTsKbGV0IG9uID0gd2luZG93Lk1hbmljLm9uOwpsZXQgdHJpZ2dlciA9IHdpbmRvdy5NYW5pYy50cmlnZ2VyOwpsZXQgcmVuZGVyID0gd2luZG93Lk1hbmljLnJlbmRlcjsKbGV0IHVybCA9IG5ldyBVUkwod2luZG93LmxvY2F0aW9uLmhyZWYpOwpsZXQgc2VhcmNoUGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcyh1cmwuc2VhcmNoKTsKCm9uKCJyZXF1ZXN0VXJsQ2hhbmdlIiwgKHBhcmFtcykgPT4gewogICAgd2luZG93Lk1hbmljLnJlcXVlc3QgPSBwYXJhbXM7CgogICAgc2VhcmNoUGFyYW1zLnNldCgicSIsIHBhcmFtcy5zbHVnKTsKCiAgICBpZihwYXJhbXMudHlwZSA9PT0gImxpc3QiKSB7CiAgICAgICAgc2VhcmNoUGFyYW1zLnNldCgidHlwZSIsIHBhcmFtcy50eXBlIHx8ICJsaXN0Iik7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoInR5cGUiKTsKICAgIH0KCiAgICBpZihwYXJhbXMuaWQpIHsKICAgICAgICBzZWFyY2hQYXJhbXMuc2V0KCJpZCIsIHBhcmFtcy5pZCk7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoImlkIik7CiAgICB9CgogICAgaGlzdG9yeS5wdXNoU3RhdGUoCiAgICAgICAgcGFyYW1zLAogICAgICAgICJNYW5pYyIgKyAocGFyYW1zLnNsdWcpLnRvVXBwZXJDYXNlKCksCiAgICAgICAgIj8iICsgc2VhcmNoUGFyYW1zLnRvU3RyaW5nKCkKICAgICk7CgogICAgLyoqCiAgICAgKiB0cmlnZ2VyKCJyZW5kZXIiLCBwYXJhbXMuc2x1ZykKICAgICAqIEB0b2RvIGluIHRoZSBlbmQgaXQgbXVzdCByZW5kZXIgYSBub2RlLCBub3QgYSBzbHVnCiAgICAgKi8KICAgIHJlbmRlcihwYXJhbXMpOwp9KTs='
             },
             markdown: {
                 url: ['showdown', 'moodown'],
@@ -64,7 +64,7 @@ var Manic = (function(doc){
                 },
                 MooDown: null,
                 refresh: 'undefined',
-                init: 'Y29uc29sZS5sb2coImxvYWRlZDogbWFya2Rvd24iKTsKbGV0IG9uID0gd2luZG93Lk1hbmljLm9uOwpsZXQgdHJpZ2dlciA9IHdpbmRvdy5NYW5pYy50cmlnZ2VyOwpsZXQgcmVxdWVzdCA9IHdpbmRvdy5NYW5pYy5yZXF1ZXN0OwpsZXQgcmVuZGVyID0gd2luZG93Lk1hbmljLnJlbmRlcjsKd2luZG93Lk1hbmljLnNlcnZpY2VzLm1hcmtkb3duLk1vb0Rvd24gPSBNb29Eb3duOwoKb24oInJlcXVlc3RVcmxDaGFuZ2UiLCAoKSA9PiB7CiAgICBsZXQgaSA9IGRvY3VtZW50LmdldEVsZW1lbnRzQnlUYWdOYW1lKCJhIikubGVuZ3RoOwoKICAgIGZvciAobGV0IGogPSAwOyBqIDwgaTsgaisrKXsKICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50c0J5VGFnTmFtZSgiYSIpW2pdLmFkZEV2ZW50TGlzdGVuZXIoImNsaWNrIiwgZXZlbnQgPT4gewogICAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOwoKICAgICAgICAgICAgcmVxdWVzdC5pZCA9IGV2ZW50LnRhcmdldC5kYXRhc2V0Lmhhc093blByb3BlcnR5KCJpZCIpID8gZXZlbnQudGFyZ2V0LmRhdGFzZXQuaWQgOiBudWxsOwogICAgICAgICAgICByZXF1ZXN0LnR5cGUgPSBldmVudC50YXJnZXQuZGF0YXNldC5oYXNPd25Qcm9wZXJ0eSgiaWQiKSA/ICJpbmZvIiA6ICJsaXN0IjsKICAgICAgICAgICAgcmVxdWVzdC5zbHVnID0gZXZlbnQudGFyZ2V0LmRhdGFzZXQubGluazsKCiAgICAgICAgICAgIHRyaWdnZXIoInJlcXVlc3RjaGFuZ2UiLCB7CiAgICAgICAgICAgICAgICBpZCA6IGV2ZW50LnRhcmdldC5kYXRhc2V0Lmhhc093blByb3BlcnR5KCJpZCIpID8gZXZlbnQudGFyZ2V0LmRhdGFzZXQuaWQgOiBudWxsLAogICAgICAgICAgICAgICAgdHlwZSA6IGV2ZW50LnRhcmdldC5kYXRhc2V0Lmhhc093blByb3BlcnR5KCJpZCIpID8gImluZm8iIDogImxpc3QiLAogICAgICAgICAgICAgICAgc2x1ZyA6IGV2ZW50LnRhcmdldC5kYXRhc2V0LmxpbmsKICAgICAgICAgICAgfSk7CgogICAgICAgICAgICByZW5kZXIocmVxdWVzdC5zbHVnKTsKICAgICAgICB9KTsKICAgIH0KfSk7'
+                init: 'Y29uc29sZS5sb2coImxvYWRlZDogbWFya2Rvd24iKTsKd2luZG93Lk1hbmljLnNlcnZpY2VzLm1hcmtkb3duLk1vb0Rvd24gPSBNb29Eb3duOw=='
             }
         },
         /**
@@ -76,7 +76,7 @@ var Manic = (function(doc){
         version : {
             major: 3,
             minor: 0,
-            patch: 2
+            patch: 3
         },
         /**
          * @type {Object}
@@ -318,28 +318,31 @@ var Manic = (function(doc){
      * @since 2.1.1
      * @param {string} site The Slug of a site to be rendered.
      */
-    const render = function(site) {
+    const render = function(page) {
         'use strict';
+        let ctx = Manic.contextMgr;
+        let services = _this[Symbol.for('services')];
+        let Element = services.framework.Element;
 
-        loadJSON(site).then(response => {
+        loadJSON(page.slug).then(response => {
             return response.text().then(stringData => {
                 return JSON.parse(stringData);
             }).then(json => {
                 // start loading animation
-                if(_this.request.type === 'info') {
+                if(page.type === 'info') {
                     // show shimmer animation
-                    $$('.article-layer').addClass('hidden no-anim');
-                    $$('.shimmer-layer').addClass('no-anim');
-                    $$('.shimmer-layer').removeClass('hidden');
+                    ctx.article.addClass('hidden no-anim');
+                    ctx.article.addClass('no-anim');
+                    ctx.article.removeClass('hidden');
 
                     // @todo: check if the same info were requested
-                    if ($('list')) {
-                        $('list').destroy();
+                    if (ctx.list) {
+                        ctx.list.destroy();
                     }
-                } else if (_this.request.type === 'list') {
+                } else if (page.type === 'list') {
                     // todo: check if the same list were requested
-                    if ($('detail')) {
-                        $('detail').destroy();
+                    if (ctx.detail) {
+                        ctx.detail.destroy();
                     }
                 }
                 return json;
@@ -349,8 +352,8 @@ var Manic = (function(doc){
             let MooDown = services.markdown.MooDown;
             // todo: extract info and list as functions
             // INFO
-            if(_this.request.type === 'info') {
-                var requestID   = _this.request.id;
+            if(page.type === 'info') {
+                var requestID   = page.id;
                 var index       = response.index[requestID.toString()];
                 var article     = response.data[index];
                 // todo: use addAttribute
@@ -367,12 +370,12 @@ var Manic = (function(doc){
 
                 // prevent a second detail-element is being created
                 // when one already exists
-                if (!$('detail')) {
+                if (!ctx.detail) {
                     var detail = new Element('div',{
                         'id'    : 'detail',
                         'class' : 'row section content',
                         html    : content
-                    }).inject(_this.contextMgr.container, 'bottom');
+                    }).inject(ctx.article, 'bottom');
                     new Element('div',{
                         'class' : 'main-article two-thirds column',
                         html    : `<div class=\"article-layer\">
@@ -383,24 +386,21 @@ var Manic = (function(doc){
                     }).inject(detail);
                 }
 
-                // todo: exchange document title with a variable
-                document.title = 'Manic - ' + article.title;
-
-                $('main-title').set('text', article.title);
-                $('main-date').set('text', new Date(article.date).timeDiffInWords());
-                $('main-date').set('title', article.date);
+                ctx.title.set('text', article.title);
+                // ctx.date.set('text', new Date(article.date).timeDiffInWords());
+                ctx.date.set('title', article.date);
 
                 new MooDown('main-body', {
                     markdown    : article.body
                 });
             }
             // LIST
-            else if(_this.request.type === 'list') {
+            else if(page.type === 'list') {
                 // last added content in json files must go to data[0]
                 var id = response.data[0].id;
                 var container = [];
 
-                if (!$('list')) {
+                if (!ctx.list) {
                     for(let i = 0; i < response.data.length; i++) {
                         let index   = response.index[id];
                         let content = '';
@@ -413,47 +413,43 @@ var Manic = (function(doc){
                             }));
                         }
                         // todo: use addAttribute
-                        content += '<h3><a data-navigo data-id=\"';
-                        content += response.data[index].id;
-                        content += '\" href=\"';
-                        content += response.data[index].link + '/' + response.data[index].id;
-                        content += '\" data-link=\"';
-                        content += response.data[index].link;
-                        content += '\">';
-                        content += response.data[index].title;
-                        content += '</a></h3>';
-                        content += '<p>';
-                        content += response.data[index].short;
-                        content += '</p>';
+                        content = `<h3>
+                                        <a data-navigo data-id=\"${response.data[index].id}\"
+                                           href=\"${response.data[index].link}/${response.data[index].id}\"
+                                           data-link=\"${response.data[index].link}\" >${response.data[index].title}</a>
+                                    </h3>
+                                    <p>${response.data[index].short}</p>`;
                         /**
                          * add new element to the bottom in the
                          * current container
                          */
-                        new Element('div',{
-                            'class' : 'short-article one-third column',
-                            html    : content
+                        new Element('div', {
+                            'class': 'short-article one-third column',
+                            html: content
                         }).inject(container[container.length - 1], 'bottom');
                         // if the previous id isn't null get previous
                         if(prev(response, id) !== null) {
                             id = prev(response, id).id;
                         }
                     }
-                    new Element('div',{
-                        'id'    : 'list'
-                    }).inject($('wrapper').getFirst());
-                    for(var i = container.length - 1; i >= 0; i--) {
-                        container[i].inject($('list'), 'top');
+
+                    let list = document.createElement('div');
+                    list.id = 'list';
+
+                    ctx.wrapper.appendChild(list);
+
+                    for (let i = container.length - 1; i >= 0; i--) {
+                        list.prepend(container[i]);
                     }
                 }
-
-                // todo: exchange document title with a variable
-                document.title = 'Manic - ';// + article.title;
             }
 
+            document.title = 'Manic - ' + page.slug.charAt(0).toUpperCase() + page.slug.slice(1);
+
             // hide shimmer animation
-            $$('.shimmer-layer').removeClass('no-anim');
-            $$('.shimmer-layer').addClass('hidden');
-            $$('.article-layer').removeClass('hidden no-anim');
+            ctx.shimmer.removeClass('no-anim');
+            ctx.shimmer.addClass('hidden');
+            ctx.article.removeClass('hidden no-anim');
 
             if (typeof services.markdown.refresh === 'function') {
                 // safe to use the function
