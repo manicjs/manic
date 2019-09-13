@@ -323,6 +323,10 @@ var Manic = (function(doc){
         let ctx = Manic.contextMgr;
         let services = _this[Symbol.for('services')];
         let Element = services.framework.Element;
+        let list = doc.querySelector('#list');
+        let detail = doc.querySelector('#detail');
+        let shimmer = doc.querySelector('.shimmer-layer');
+        let art = doc.querySelector('.main-article');
 
         loadJSON(page.slug).then(response => {
             return response.text().then(stringData => {
@@ -331,18 +335,18 @@ var Manic = (function(doc){
                 // start loading animation
                 if(page.type === 'info') {
                     // show shimmer animation
-                    ctx.article.addClass('hidden no-anim');
-                    ctx.article.addClass('no-anim');
-                    ctx.article.removeClass('hidden');
+                    // ctx.article.addClass('hidden no-anim');
+                    // ctx.article.addClass('no-anim');
+                    // ctx.article.removeClass('hidden');
 
                     // @todo: check if the same info were requested
-                    if (ctx.list) {
-                        ctx.list.destroy();
+                    if (list) {
+                        list.remove();
                     }
                 } else if (page.type === 'list') {
                     // todo: check if the same list were requested
-                    if (ctx.detail) {
-                        ctx.detail.destroy();
+                    if (detail) {
+                        detail.remove();
                     }
                 }
                 return json;
@@ -355,39 +359,40 @@ var Manic = (function(doc){
             if(page.type === 'info') {
                 var requestID   = page.id;
                 var index       = response.index[requestID.toString()];
+                // the current json object article with body, date, ...etc.
                 var article     = response.data[index];
-                // todo: use addAttribute
-                var content = `<div class=\"one-third column\">
-                                  <a class=\"avatar-wrapper\">
-                                      <span class=\"initial\">
-                                        M
-                                      </span>
-                                      <span class=\"integral\">
-                                        ∫
-                                      </span>
-                                  </a>
-                              </div>`;
 
                 // prevent a second detail-element is being created
                 // when one already exists
-                if (!ctx.detail) {
-                    var detail = new Element('div',{
-                        'id'    : 'detail',
-                        'class' : 'row section content',
-                        html    : content
-                    }).inject(ctx.article, 'bottom');
-                    new Element('div',{
-                        'class' : 'main-article two-thirds column',
-                        html    : `<div class=\"article-layer\">
-                                  <h1 id=\"main-title\"></h1>
-                                  <p id=\"main-date\"></p>
-                                  <p id=\"main-body\"></p>
-                                  </div>`
-                    }).inject(detail);
+                if (!detail) {
+                    // variable _art_ is the element in which these two new
+                    // elements will be appended.
+                    let mainArt = new Element('div',{
+                        'class': 'main-article two-thirds column',
+                        html: `<div class=\"article-layer\">
+                                   <h1 id=\"main-title\"></h1>
+                                   <p id=\"main-date\"></p>
+                                   <p id=\"main-body\"></p>
+                               </div>`
+                    })
+
+                    let newElem = new Element('div',{
+                        'id': 'detail',
+                        'class': 'row section content',
+                        html: `<div class=\"one-third column\">
+                                   <a class=\"avatar-wrapper\">
+                                       <span class=\"initial\">M</span>
+                                       <span class=\"integral\">∫</span>
+                                   </a>
+                               </div>`
+                    });
+
+                    ctx.wrapper.appendChild(newElem);
+                    newElem.appendChild(mainArt);
                 }
 
                 ctx.title.set('text', article.title);
-                // ctx.date.set('text', new Date(article.date).timeDiffInWords());
+                ctx.date.set('text', new Date(article.date).timeDiffInWords());
                 ctx.date.set('title', article.date);
 
                 new MooDown('main-body', {
@@ -398,12 +403,13 @@ var Manic = (function(doc){
             else if(page.type === 'list') {
                 // last added content in json files must go to data[0]
                 var id = response.data[0].id;
+                // temporary element container. will be inject
                 var container = [];
 
-                if (!ctx.list) {
+                if (!list) {
                     for(let i = 0; i < response.data.length; i++) {
-                        let index   = response.index[id];
-                        let content = '';
+                        let index = response.index[id];
+                        let data = response.data[index];
                         /**
                          * push a section to the container
                          */
@@ -413,38 +419,42 @@ var Manic = (function(doc){
                             }));
                         }
                         // todo: use addAttribute
-                        content = `<h3>
-                                        <a data-navigo data-id=\"${response.data[index].id}\"
-                                           href=\"${response.data[index].link}/${response.data[index].id}\"
-                                           data-link=\"${response.data[index].link}\" >${response.data[index].title}</a>
-                                    </h3>
-                                    <p>${response.data[index].short}</p>`;
                         /**
                          * add new element to the bottom in the
                          * current container
                          */
-                        new Element('div', {
+                        let articleElement = new Element('div', {
                             'class': 'short-article one-third column',
-                            html: content
-                        }).inject(container[container.length - 1], 'bottom');
+                            html: `<h3>
+                                       <a data-navigo data-id=\"${data.id}\"
+                                          href=\"${data.link}/${data.id}\"
+                                          data-link=\"${data.link}\" >
+                                           ${data.title}
+                                       </a>
+                                   </h3>
+                                   <p>${data.short}</p>`
+                        });
+
+                        container[container.length - 1].appendChild(articleElement);
+
                         // if the previous id isn't null get previous
                         if(prev(response, id) !== null) {
                             id = prev(response, id).id;
                         }
                     }
 
-                    let list = document.createElement('div');
-                    list.id = 'list';
+                    let listElement = doc.createElement('div');
+                    listElement.id = 'list';
 
-                    ctx.wrapper.appendChild(list);
+                    ctx.wrapper.appendChild(listElement);
 
                     for (let i = container.length - 1; i >= 0; i--) {
-                        list.prepend(container[i]);
+                        listElement.prepend(container[i]);
                     }
                 }
             }
 
-            document.title = 'Manic - ' + page.slug.charAt(0).toUpperCase() + page.slug.slice(1);
+            doc.title = 'Manic - ' + page.slug.charAt(0).toUpperCase() + page.slug.slice(1);
 
             // hide shimmer animation
             ctx.shimmer.removeClass('no-anim');
