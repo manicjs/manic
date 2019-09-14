@@ -12,6 +12,12 @@
             "error",
             4
         ],
+        "no-unused-vars": [
+            "warn",
+            {
+                "vars": "all"
+            }
+        ],
         "multiline-ternary": [
             "error",
             "always"
@@ -21,11 +27,11 @@
             "windows"
         ],
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
-            "error",
+            "warn",
             "always"
         ]
     }

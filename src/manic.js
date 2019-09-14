@@ -97,8 +97,8 @@ var Manic = (function(doc){
          */
         request : {
             id : 1,
-            type : "info",
-            slug : "home"
+            type : 'info',
+            slug : 'home'
         },
         /**
          * @type {Object}
@@ -111,8 +111,8 @@ var Manic = (function(doc){
          * @property {Object} content
          */
         contextMgr : {
-            container : "",
-            content : ""
+            container : '',
+            content : ''
         }
     };
 
@@ -131,24 +131,24 @@ var Manic = (function(doc){
      * @todo write docs about it...
      */
     const isArray = function(e) {
-        if (Object.prototype.toString.call(e) === "[object Array]") {
+        if (Object.prototype.toString.call(e) === '[object Array]') {
             return true;
         } else  {
             return false;
         }
-    }
+    };
 
     /**
      * @since 2.0.0
      * @todo write docs about it...
      */
     const isPromise = function(e) {
-        if (Object.prototype.toString.call(e) === "[object Promise]") {
+        if (Object.prototype.toString.call(e) === '[object Promise]') {
             return true;
         } else {
             return false;
         }
-    }
+    };
 
     /**
      * Creates a asynchronous function on the fly, which can be invoced by the
@@ -196,7 +196,7 @@ var Manic = (function(doc){
     };
 
     const load = async function(context, file, extension) {
-        return await fetch("./" + context + "/" + file + "." + extension);
+        return await fetch('./' + context + '/' + file + '.' + extension);
     };
 
     /**
@@ -206,7 +206,7 @@ var Manic = (function(doc){
      * script.
      */
     const loadJS = async function(url) {
-        return await load("js", url, "js");
+        return await load('js', url, 'js');
     };
 
     /**
@@ -225,8 +225,8 @@ var Manic = (function(doc){
      *
      */
     const register = async function(service) {
-        _this.service
-    }
+        _this.service;
+    };
 
     /**
      * Get source code and invoke it with given _init_ code. If `service.url` is an array of
@@ -285,17 +285,17 @@ var Manic = (function(doc){
      * @see https://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file/950146#950146
      */
     const injectScript = async function(script) {
-        let s = doc.createElement("script");
+        let s = doc.createElement('script');
         s.src = script.url;
         doc.body.appendChild(s);
-    }
+    };
 
     const getContext = async function(file) {
-        return await load("contexts", file, "jsonld");
+        return await load('contexts', file, 'jsonld');
     };
 
     const getData = async function(context, file) {
-        return await load("data/" + context, file, "jsonld");
+        return await load('data/' + context, file, 'jsonld');
     };
 
     /**
@@ -303,7 +303,7 @@ var Manic = (function(doc){
      * @return {Promise} Returns a Promise of the source code.
      */
     const getSourceCode = function(filename) {
-        let script = load('js', filename, 'js');
+        let script = loadJS(filename);
 
         return script.then((data) => {
             return data.text().then((code) => {
@@ -374,7 +374,7 @@ var Manic = (function(doc){
                                    <p id=\"main-date\"></p>
                                    <p id=\"main-body\"></p>
                                </div>`
-                    })
+                    });
 
                     let newElem = new Element('div',{
                         'id': 'detail',
@@ -465,7 +465,6 @@ var Manic = (function(doc){
                 // safe to use the function
                 services.markdown.refresh();
                 services.router.instance.updatePageLinks();
-            } else {
             }
         });
     };
@@ -489,21 +488,21 @@ var Manic = (function(doc){
      * @todo It seems that the click event is trigger twice. Prevent same
      * eventlistener in the same custom event.
      */
-    on("urlchange", () => {
+    on('urlchange', () => {
         let url = new URL(window.location.href);
         let searchParams = new URLSearchParams(url.search);
 
         /**
          * @todo: refactor ternary operator
          */
-        _this.request.id = searchParams.has("id")
-            ? searchParams.get("id")
+        _this.request.id = searchParams.has('id')
+            ? searchParams.get('id')
             : _this.request.id;
-        _this.request.type = searchParams.has("type")
-            ? searchParams.get("type")
+        _this.request.type = searchParams.has('type')
+            ? searchParams.get('type')
             : _this.request.info;
-        _this.request.slug = searchParams.has("q")
-            ? searchParams.get("q")
+        _this.request.slug = searchParams.has('q')
+            ? searchParams.get('q')
             : _this.request.home;
     });
 
