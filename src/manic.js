@@ -53,18 +53,18 @@ var Manic = (function(doc){
                 init: 'Y29uc29sZS5sb2coImxvYWRlZDogZnJhbWV3b3JrIik7CndpbmRvdy5NYW5pYy5zZXJ2aWNlcy5mcmFtZXdvcmsuRWxlbWVudCA9IEVsZW1lbnQ7CndpbmRvdy5NYW5pYy5jb250ZXh0TWdyPXsKICAgIHdyYXBwZXI6ICQkKCJkaXYjd3JhcHBlciBeIGRpdiIpWzBdLAogICAgYXJ0aWNsZTogJCQoIi5hcnRpY2xlLWxheWVyIilbMF0sCiAgICBkZXRhaWw6ICQoJ2RldGFpbCcpLAogICAgbGlzdDogJCgnbGlzdCcpLAogICAgdGl0bGU6ICQoJ21haW4tdGl0bGUnKSwKICAgIGRhdGU6ICQoJ21haW4tZGF0ZScpLAogICAgc2hpbW1lcjogJCQoJ3NoaW1tZXItbGF5ZXInKQp9Ow=='
             },
             route: {
-                url: 'navigo',
+                url: 'router',
                 instance : 'undefined',
-                init: 'Y29uc29sZS5sb2coImxvYWRlZDogcm91dGUiKTsKbGV0IG9uID0gd2luZG93Lk1hbmljLm9uOwpsZXQgdHJpZ2dlciA9IHdpbmRvdy5NYW5pYy50cmlnZ2VyOwpsZXQgcmVuZGVyID0gd2luZG93Lk1hbmljLnJlbmRlcjsKbGV0IHVybCA9IG5ldyBVUkwod2luZG93LmxvY2F0aW9uLmhyZWYpOwpsZXQgc2VhcmNoUGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcyh1cmwuc2VhcmNoKTsKCm9uKCJyZXF1ZXN0VXJsQ2hhbmdlIiwgKHBhcmFtcykgPT4gewogICAgd2luZG93Lk1hbmljLnJlcXVlc3QgPSBwYXJhbXM7CgogICAgc2VhcmNoUGFyYW1zLnNldCgicSIsIHBhcmFtcy5zbHVnKTsKCiAgICBpZihwYXJhbXMudHlwZSA9PT0gImxpc3QiKSB7CiAgICAgICAgc2VhcmNoUGFyYW1zLnNldCgidHlwZSIsIHBhcmFtcy50eXBlIHx8ICJsaXN0Iik7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoInR5cGUiKTsKICAgIH0KCiAgICBpZihwYXJhbXMuaWQpIHsKICAgICAgICBzZWFyY2hQYXJhbXMuc2V0KCJpZCIsIHBhcmFtcy5pZCk7CiAgICB9IGVsc2UgewogICAgICAgIHNlYXJjaFBhcmFtcy5kZWxldGUoImlkIik7CiAgICB9CgogICAgaGlzdG9yeS5wdXNoU3RhdGUoCiAgICAgICAgcGFyYW1zLAogICAgICAgICJNYW5pYyIgKyAocGFyYW1zLnNsdWcpLnRvVXBwZXJDYXNlKCksCiAgICAgICAgIj8iICsgc2VhcmNoUGFyYW1zLnRvU3RyaW5nKCkKICAgICk7CgogICAgLyoqCiAgICAgKiB0cmlnZ2VyKCJyZW5kZXIiLCBwYXJhbXMuc2x1ZykKICAgICAqIEB0b2RvIGluIHRoZSBlbmQgaXQgbXVzdCByZW5kZXIgYSBub2RlLCBub3QgYSBzbHVnCiAgICAgKi8KICAgIHJlbmRlcihwYXJhbXMpOwp9KTs='
+                init: ''
             },
             markdown: {
-                url: ['showdown', 'moodown'],
+                url: ['showdown', 'moodown', 'mooarkdown'],
                 handle: (request, next) => {
                     return next(request);
                 },
                 MooDown: null,
                 refresh: 'undefined',
-                init: 'Y29uc29sZS5sb2coImxvYWRlZDogbWFya2Rvd24iKTsKd2luZG93Lk1hbmljLnNlcnZpY2VzLm1hcmtkb3duLk1vb0Rvd24gPSBNb29Eb3duOw=='
+                init: ''
             }
         },
         /**
@@ -193,6 +193,7 @@ var Manic = (function(doc){
                 fn(data);
             });
         }
+        console.log('triggered event');
     };
 
     const load = async function(context, file, extension) {
@@ -351,9 +352,12 @@ var Manic = (function(doc){
                 }
                 return json;
             });
-        }).then(response => {
+        }).then(async response => {
             let services = _this[Symbol.for('services')];
-            let MooDown = services.markdown.MooDown;
+            let MooDown = Manic.services.markdown.MooDown;
+            
+            console.trace(services);
+            console.log(Manic.services);
             // todo: extract info and list as functions
             // INFO
             if(page.type === 'info') {
@@ -391,13 +395,17 @@ var Manic = (function(doc){
                     newElem.appendChild(mainArt);
                 }
 
+                console.log(ctx.title);
                 ctx.title.set('text', article.title);
                 ctx.date.set('text', new Date(article.date).timeDiffInWords());
                 ctx.date.set('title', article.date);
 
-                new MooDown('main-body', {
+                console.log(MooDown);
+                await MooDown.moodown('main-body', {
                     markdown    : article.body
                 });
+
+                // console.log(b);
             }
             // LIST
             else if(page.type === 'list') {
@@ -488,14 +496,21 @@ var Manic = (function(doc){
      * @todo It seems that the click event is trigger twice. Prevent same
      * eventlistener in the same custom event.
      */
-    on('urlchange', () => {
+    on('routerReady', () => {
         let url = new URL(window.location.href);
         let searchParams = new URLSearchParams(url.search);
 
+        console.log('router is ready to be used.');
+        console.log(searchParams.get('q'));
+        trigger('requestUrlChange', {
+            id: 1,
+            slug: 'home',
+            type: 'info'
+        });
         /**
          * @todo: refactor ternary operator
          */
-        _this.request.id = searchParams.has('id')
+        /*_this.request.id = searchParams.has('id')
             ? searchParams.get('id')
             : _this.request.id;
         _this.request.type = searchParams.has('type')
@@ -503,7 +518,7 @@ var Manic = (function(doc){
             : _this.request.info;
         _this.request.slug = searchParams.has('q')
             ? searchParams.get('q')
-            : _this.request.home;
+            : _this.request.home;*/
     });
 
     doc.onreadystatechange = async() => {
@@ -531,6 +546,14 @@ var Manic = (function(doc){
             }
 
             loadServices();
+            console. log('wird gleich getriggert');
+
+            trigger('requestUrlChange', {
+                id: 1,
+                slug: 'home',
+                type: 'info'
+            });
+            console.log('wurde getriggert');
         }
     };
 

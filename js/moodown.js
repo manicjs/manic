@@ -10,7 +10,7 @@ var MooDown = new Class ({
         simplifiedAutoLink  : false
     },
 
-    moodown : function(element, text){
+    moodown : async function(element, text){
         var converter = new showdown.Converter({
             'headerLevelStart'  : '2',
             tables              : true,
