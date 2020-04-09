@@ -1,7 +1,7 @@
 {
-  "name": "Manic",
+  "name": "manic",
   "description": "Managing different javascript frameworks.",
-  "homepage": "http://mrisaacs.org/manic",
+  "homepage": "http://manic.js.org",
   "version": "3.0.3",
   "author": {
     "name": "Ivan Ilic",
@@ -10,20 +10,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/MrIsaacs/manic.git",
-    "web": "https://github.com/MrIsaacs/manic"
+    "url": "git+ssh://git@github.com/manicjs/manic.git",
+    "web": "https://github.com/manicjs/manic"
   },
   "license": "MIT",
   "main": "./src/manic.js",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
   "dependencies": {},
   "devDependencies": {
-    "esdoc": "^1.1.0",
-    "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^3.19.0",
+    "eslint": "^6.8.0",
+    "jsdoc": "^3.6.3",
+    "minami": "^1.2.3",
     "mocha": "^6.2.0",
     "testem": "^2.17.0"
   },
   "scripts": {
+    "serve": "npx serve -l 8000",
+    "lint": ".\\node_modules\\.bin\\eslint .\\src\\",
+    "lint-fix": ".\\node_modules\\.bin\\eslint .\\src\\ --fix",
+    "docs": ".\\node_modules\\.bin\\jsdoc -c .\\jsdoc.json",
     "test": ".\\node_modules\\.bin\\mocha"
   },
   "bugs": {
