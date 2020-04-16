@@ -3,14 +3,18 @@
     "@type": "Package",
     "name": "Manic",
     "description": "A semantic JavaScript framework manager.",
-    "homepage": "https://manicjs.github.io",
+    "homepage": "https://manicjs.js.org",
     "created": "2013-06-19",
     "executable": "https://github.com/manicjs/manic/src/manic.js",
     "programming-language": "JavaScript",
     "issue-tracker": "https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+repo%3Amanicjs%2Fmanic",
-    "repository" : {
-        "browse": "https://github.com/manicjs/manic/",
-        "location": "https://github.com/manicjs/manic.git"
+    "repository": {
+        "browse": {
+            "@id": "https://github.com/manicjs/manic/"
+        },
+        "location": {
+            "@id": "https://github.com/manicjs/manic.git"
+        }
     },
     "release": {
         "revision": "2.1.1",
