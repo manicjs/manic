@@ -1,0 +1,10 @@
+{
+    "@context": "https://raw.githubusercontent.com/manicjs/manic/linked-data/contexts/article.json",
+    "@type": "Article",
+    "author": "foxyboss",
+    "headline": "This is the first headline ever",
+    "published": "2020-06-09T05:24:08-03:00",
+    "modified": "2020-06-09T05:24:08-03:00",
+    "articleBody" : "This is my first linked data article body",
+    "revision": "list of article revision"
+}
