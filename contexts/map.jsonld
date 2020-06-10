@@ -6,7 +6,7 @@
         "ArticleMap": "schema:ListItem",
         "abstract": "schema:abstract",
         "articles": {
-            "@id": "mart:Article",
+            "@id": "schema:Article",
             "@container": "@index",
             "@type": "@id"
         },
