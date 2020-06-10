@@ -1,0 +1,22 @@
+{
+    "@context": {
+        "@version": 1.1,
+        "schema": "http://schema.org/",
+        "name": "schema:name",
+        "ArticleMap": "schema:ListItem",
+        "abstract": "schema:abstract",
+        "articles": {
+            "@id": "mart:Article",
+            "@container": "@index",
+            "@type": "@id"
+        },
+        "articleBody": "schema:articleBody",
+        "article-map": "",
+        "revision": {
+            "@id": "schema:Article",
+            "@container": "@list",
+            "@type": "@id"
+        },
+        "url": "schema:url"
+    }
+}
