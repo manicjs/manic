@@ -1,0 +1,21 @@
+{
+    "@context": "https://raw.githubusercontent.com/manicjs/manic/linked-data/contexts/article.jsonld",
+    "@type": "Articlelist",
+    "articleList": [
+        {
+            "@type": "ArticleItem",
+            "position": 1,
+            "item": {
+                "@id": "#Item1"
+            }
+        },
+        {
+            "@type": "ArticleItem",
+            "position": 2,
+            "item": {
+                "@id": "#Item2"
+            }
+        }
+    ]
+}
+  

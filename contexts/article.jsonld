@@ -21,6 +21,12 @@
             "@id": "schema:Article",
             "@container": "@list",
             "@type": "@id"
-        }
+        },
+        "articleList": "schema:itemListElement",
+        "ArticleList": "schema:ItemList",
+        "ArticleItem": "schema:ListItem",
+        "item": "schema:item",
+        "position": "schema:position",
+        "name": "schema:name"
     }
 }
