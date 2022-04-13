@@ -65,7 +65,7 @@ export default {
    * https://hikari-blog.com/nuxtjs-github-pages/
    */
    router: {
-    base: '/',
+    base: '/nuxt-sw3cl',
     prefetchLinks: false
   },
 
