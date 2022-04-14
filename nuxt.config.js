@@ -21,7 +21,7 @@ export default {
       {
         hid: 'twitter:card',
         name: 'twitter:card',
-        content: 'summary'
+        content: 'summary_large_image'
       },
       {
         hid: 'twitter:creator',
@@ -43,6 +43,11 @@ export default {
         name: 'twitter:description',
         content:
           'nuxt-sw3cl is a full static web3 client'
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: 'https://mrisaacs.org/nuxt-sw3cl/preview.png'
       },
       {
         hid: 'twitter:image:alt',
@@ -69,6 +74,16 @@ export default {
         property: 'og:description',
         content:
           'nuxt-sw3cl is a full static web3 client'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://mrisaacs.org/nuxt-sw3cl/preview.png'
+      },
+      {
+        hid: 'og:image:secure_url',
+        property: 'og:image:secure_url',
+        content: 'https://mrisaacs.org/nuxt-sw3cl/preview.png'
       },
       {
         hid: 'og:image:alt',

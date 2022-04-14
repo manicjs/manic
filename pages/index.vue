@@ -3,7 +3,7 @@
     <SocialHead
       :title="page.title"
       :description="page.description"
-      image="~/preview.png"
+      image="https://mrisaacs.org/nuxt-sw3cl/preview.png"
     />
     <div class="article-layer">
       <h1 id="main-title">
