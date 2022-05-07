@@ -146,7 +146,7 @@ export default {
    * Customize router options for different environments
    * https://hikari-blog.com/nuxtjs-github-pages/
    */
-   router: {
+  router: {
     base: '/nuxt-sw3cl',
     prefetchLinks: false
   },
