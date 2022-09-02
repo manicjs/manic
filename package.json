@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-sw3cl",
+  "name": "manic",
   "version": "0.1.0",
   "description": "",
   "author": {
@@ -8,8 +8,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrIsaacs/sw3cl.git",
-    "web": "https://github.com/MrIsaacs/sw3cl"
+    "url": "git+https://github.com/manicjs/manic.git",
+    "web": "https://github.com/manicjs/manic"
   },
   "license": "MIT",
   "scripts": {
@@ -49,7 +49,7 @@
     "vue-template-compiler": "^2.6.14"
   },
   "bugs": {
-    "url": "https://github.com/MrIsaacs/sw3cl/issues"
+    "url": "https://github.com/manicjs/manic/issues"
   },
-  "homepage": "https://github.com/MrIsaacs/sw3cl#readme"
+  "homepage": "https://manic.js.org"
 }
