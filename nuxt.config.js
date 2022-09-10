@@ -1,4 +1,4 @@
-import { head } from "./config";
+import { siteHead } from "./config";
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    ...head
+    ...siteHead
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

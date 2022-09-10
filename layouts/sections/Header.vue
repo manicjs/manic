@@ -37,20 +37,13 @@
 </template>
 
 <script>
+import { siteNavigation } from '@/config'
+
 export default {
   name: 'Header',
   data () {
     return {
-      menu: {
-        logo: {
-          title: 'nuxt-sw3cl',
-          url: '/'
-        },
-        navigation: [{
-          title: 'home',
-          url: '/'
-        }]
-      }
+      menu: siteNavigation
     }
   }
 }
