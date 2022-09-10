@@ -1,6 +1,6 @@
 export default {
   logo: {
-    title: 'nuxt-sw3cl',
+    title: 'Manic',
     url: '/'
   },
   navigation: [{
