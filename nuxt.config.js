@@ -1,4 +1,4 @@
-import { siteHead } from "./config";
+import { routerBase, siteHead } from "./config";
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -56,7 +56,7 @@ export default {
    * https://hikari-blog.com/nuxtjs-github-pages/
    */
   router: {
-    base: '/',
+    ...routerBase,
     prefetchLinks: false
   },
 
