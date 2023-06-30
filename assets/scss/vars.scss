@@ -1,0 +1,82 @@
+:root {
+  // colors
+  --color-white: #fff;
+  // --color-black: #000;
+  // --color-grey-darker: #3e3f3f;
+  // --color-grey-dark: #3e3f3f;
+  // --color-grey: #f7f5f4;
+
+  // color type
+  --color-background: #f3f5f4;
+  // --color-background: #333;
+  --color-text: #d40000;
+  --color-h1: var(--color-text);
+  --color-logo-color: #c4151c;
+  --color-navigation-link: #8f0000;
+  --color-link: #d40000;
+  --color-link-hover: #8f0000;
+  // --color-button: #000;
+  // --color-button-hover: #634c18;
+  // --color-alt: #7f6a57;
+
+  // type logo
+  --font-f-serif-logo-size: 2.75rem;
+  --font-f-serif-logo-weight: bold;
+
+  // type
+  --font-f-serif: Georgia, Times, "Times New Roman", serif;
+  --font-f-serif-weight-normal: normal;
+  --font-f-serif-weight-bold: bold;
+  --font-f-serif-header-size: 2.5rem;
+  --font-f-serif-h1-size: 3.2rem;
+  --font-f-serif-h2-size: 2.5rem;
+  --font-f-serif-h3-size: 2rem;
+
+  // transition
+  --transition-duration-min: 0.3s;
+  --transition-duration-avg: 0.6s;
+  --transition-duration-max: 0.8s;
+
+  // distance / size / measurements
+  --page-width: 100%;
+  --page-height: 68vh;
+  --header-height: 115px;
+  --footer-height: 16vh;
+  --navigation-underline-thickness: 7.5%;
+
+  // spacing-
+  --horizontal-gutter-md: 3rem;
+  --vertical-gutter-sm: 2rem;
+  --heading-space-top: 1rem;
+
+  // mobile spacing
+  --mobile-list-padding-left-md: 0.75rem;
+  --mobile-list-padding-left-sm: 0.5rem;
+  --mobile-horizontal-gutter-md: 2.75rem;
+  --mobile-horizontal-gutter-sm: 1.5rem;
+  --mobile-vertical-gutter-md: 1rem;
+  --mobile-vertical-gutter-sm: 0.75rem;
+
+  
+  // Burger Variables
+  --burger-width: 30px;
+  --burger-height: 30px;
+  --burger-thickness: 3px;
+  --burger-color: var(--color-link-hover);
+  --burger-activated-color: var(--color-link);
+
+  // --font-s-heading-sm: 8.333vw;
+  // --lh-heading-sm: 10.556vw;
+
+  // --font-s-chapeau-md: 4.444vw;
+  // --lh-chapeau-md: 9.167vw;
+
+  // --font-s-chapeau-sm: 3.611vw;
+  // --lh-chapeau-sm: 3.611vw;
+
+  // --font-s-body: 4.444vw;
+  // --lh-body: 8.333vw;
+
+  // ease
+  // --ease-button: cubic-bezier(0.34, 0, 0.18, 1);
+}
