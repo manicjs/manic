@@ -1,42 +1,37 @@
-<template>
-  <div class="main-article two-thirds column">
-    <SocialHead
-      :title="page.title"
-      :description="page.description"
-      image="https://mrisaacs.org/nuxt-sw3cl/preview.png"
-    />
-    <div class="article-layer">
-      <h1 id="main-title">
-        <p>{{ page.title }}</p>
-      </h1>
-      <p id="main-date" :title="[page.createdAt]">
-        {{ $moment(page.createdAt).fromNow() }}
-      </p>
-      <p id="main-body">
-        <nuxt-content :document="page" />
-      </p>
-    </div>
-  </div>
-</template>
+<script setup lang="ts">
+import moment from 'moment';
 
-<script>
-import SocialHead from '~/components/SocialHead.vue'
+const { t } = useI18n()
+const { $ucfirst: ucfirst } = useNuxtApp()
 
-export default {
-  components: {
-    SocialHead
-  },
-  async asyncData ({ $content }) {
-    const page = await $content('README').fetch()
-    return { page }
-  },
-  head () {
-    return {
-      title: this.page.title,
-      meta: [
-        { hid: 'description', name: 'description', content: this.page.description }
-      ]
-    }
+definePageMeta({
+  pageTransition: {
+    name: 'slide-left',
+    mode: 'out-in'
   }
-}
+})
+
+useHead({
+  title: t('get-started')
+})
 </script>
+
+<template>
+  <main>
+    <ContentDoc v-slot="{ doc }" path="/get-started">
+      <article>
+        <header>
+          <h1>{{ $t('get-started') }}</h1>
+          <section id="article-timestamp">
+            <i><b>{{ $t('created') }}</b></i> <time :datetime="doc.createdAt" :title="doc.createdAt">
+              {{ moment(doc.createdAt).fromNow() }}
+            </time><br class="bigScreen"/><span class="mobileScreen">, </span><i><b>{{ $t('updated') }}</b></i> <time :datetime="doc.updatedAt" :title="doc.updatedAt">
+              {{ moment(doc.updatedAt).fromNow() }}
+            </time>
+          </section>
+        </header>
+        <ContentRenderer :value="doc" />
+      </article>
+    </ContentDoc>
+  </main>
+</template>
