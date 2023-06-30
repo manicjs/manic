@@ -1,21 +1,29 @@
-import { routerBase, siteHead } from "./config";
-
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
+  telemetry: false,
   ssr: false,
-  target: 'static',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    ...siteHead
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+    }
+  },
+  app: {
+    head: {
+      charset: 'utf-16',
+      meta: [
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1'
+        },
+      ],
+      "link": [],
+      "style": [],
+      "script": [],
+      "noscript": []
+    }
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/normalize.css',
-    '@/assets/css/skeleton.css',
-    '@/assets/css/custom.css',
-    '@/assets/css/animation.css',
+    '@/assets/scss/index.scss',
     '@/assets/css/material-design-iconic-font.min.css'
   ],
 
@@ -35,33 +43,49 @@ export default {
     }]
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
+  /**
+   * Nuxt Modules
+   * @see https://nuxt.com/modules
+   */
   modules: [
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxt/devtools',
+    '@nuxtjs/i18n'
+    // '@nuxtjs/color-mode'
   ],
   
-  generate: {
-    fallback: true
-  },
-
-  // Content module configuration: https://go.nuxtjs.dev/config-content
+  /**
+   * Nuxt Content - Module
+   * @see https://content.nuxtjs.org/guide/writing/document-driven
+   */
   content: {
-    apiPrefix: 'api',
-    dir: 'data/',
-    liveEdit: false
+    // apiPrefix: 'api',
+    // dir: 'data/',
+    // liveEdit: false,
+    documentDriven: true,
+    navigation: {
+      fields: ['title']
+    }
   },
 
   /**
-   * Customize router options for different environments
-   * https://hikari-blog.com/nuxtjs-github-pages/
+   * Nuxt I18n - Module
+   * @see https://v8.i18n.nuxtjs.org/
    */
-  router: {
-    ...routerBase,
-    prefetchLinks: false
+  i18n: {
+    vueI18n: './i18n.config.ts'
   },
+  // runtimeConfig: {
+  //   public: {
+  //     i18n: {
+  //        title: 'asd'
+  //        // smothing other options ...
+  //     }
+  //   }
+  // }
 
-  cli: {
-    badgeMessages: ['Manic is ready to go!'],
-    bannerColor: 'red'
-  }
+  // cli: {
+  //   badgeMessages: ['Manic is ready to go!'],
+  //   bannerColor: 'red'
+  // }
 }
