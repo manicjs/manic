@@ -28,12 +28,12 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/nuxt-init.client.js'
-  ],
+  // plugins: [
+  //   '~/plugins/nuxt-init.client.js'
+  // ],
 
   // Auto import components, see https://go.nuxtjs.dev/config-components
-  components: true,
+  // components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
