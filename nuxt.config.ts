@@ -22,6 +22,10 @@ export default {
     }
   },
 
+  experimental:{
+    payloadExtraction: true
+  },
+
   css: [
     '@/assets/scss/index.scss',
     '@/assets/css/material-design-iconic-font.min.css'

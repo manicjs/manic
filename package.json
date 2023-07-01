@@ -11,6 +11,7 @@
     "url": "git+https://github.com/manicjs/manic.git",
     "web": "https://github.com/manicjs/manic"
   },
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "nuxt dev",
