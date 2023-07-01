@@ -21,7 +21,7 @@ useHead({
     <ContentDoc v-slot="{ doc }" path="/get-started">
       <article>
         <header>
-          <h1>{{ $t('get-started') }}</h1>
+          <h1>{{ doc.title }}</h1>
           <section id="article-timestamp">
             <i><b>{{ $t('created') }}</b></i> <time :datetime="doc.createdAt" :title="doc.createdAt">
               {{ moment(doc.createdAt).fromNow() }}
