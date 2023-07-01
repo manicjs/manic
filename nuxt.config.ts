@@ -1,6 +1,6 @@
 export default {
   telemetry: false,
-  ssr: false,
+  ssr: true,
   nitro: {
     prerender: {
       crawlLinks: true,
