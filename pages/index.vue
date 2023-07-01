@@ -26,7 +26,7 @@ useHead({
             <i><b>{{ $t('created') }}</b></i> <time :datetime="doc.createdAt" :title="doc.createdAt">
               {{ moment(doc.createdAt).fromNow() }}
             </time><br class="bigScreen"/><span class="mobileScreen">, </span><i><b>{{ $t('updated') }}</b></i> <time :datetime="doc.updatedAt" :title="doc.updatedAt">
-              {{ moment(doc.updatedAt).fromNow() }}
+              {{ moment(doc.updatedAt[doc.updatedAt.length-1]).fromNow() }}
             </time>
           </section>
         </header>
