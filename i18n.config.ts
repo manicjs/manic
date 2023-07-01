@@ -1,5 +1,4 @@
 import en from './locales/en-US.json'
-import de from './locales/de-AT.json'
 
 export default defineI18nConfig(() => ({
   defaultLocale: 'en',
@@ -9,8 +8,7 @@ export default defineI18nConfig(() => ({
     skipNuxtState: true
   },
   messages: {
-    en,
-    de
+    en
   },
   parsePages: false,
   strategy: 'prefix_except_default',
