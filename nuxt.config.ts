@@ -7,6 +7,7 @@ export default {
     }
   },
   app: {
+    baseUrl: 'https://manic.js.org',
     head: {
       charset: 'utf-16',
       meta: [
