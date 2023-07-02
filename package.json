@@ -19,13 +19,6 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "npm run lint:js",
-    "lintfix": "npm run lint:js -- --fix",
-    "test:mocha-webpack": "mocha-webpack --mode=development test/**/*.spec.js",
-    "show:webpack": "nuxt webpack",
-    "show:webpack:devtool": "nuxt webpack devtool",
-    "show:webpack:rules": "nuxt webpack module rules --dev",
     "deploy": "push-dir --dir=dist --branch=gh-page --cleanup"
   },
   "dependencies": {
