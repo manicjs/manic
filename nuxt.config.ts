@@ -1,3 +1,5 @@
+import { baseUrl, head } from './config/app.json'
+
 export default {
   telemetry: false,
   ssr: true,
@@ -7,20 +9,8 @@ export default {
     }
   },
   app: {
-    baseUrl: 'https://manic.js.org',
-    head: {
-      charset: 'utf-16',
-      meta: [
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1'
-        },
-      ],
-      "link": [],
-      "style": [],
-      "script": [],
-      "noscript": []
-    }
+    baseUrl,
+    head
   },
 
   css: [

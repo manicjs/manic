@@ -1,0 +1,29 @@
+{
+  "baseUrl": "https://mrisaacs.org",
+  "head": {
+    "meta": [
+      {
+        "charset": "utf-16"
+      },
+      {
+        "name": "viewport",
+        "content": "width=device-width, initial-scale=1"
+      },
+      {
+        "hid": "author",
+        "name": "author",
+        "content": "Ivan Ilić"
+      },
+      {
+        "hid": "description",
+        "name": "description",
+        "content": "technology, journal-, algorithm-, hard-fact- and manifesto-chaser"
+      },
+      {
+        "name": "format-detection",
+        "content": "telephone=no"
+      }
+    ]
+  },
+  "title": "MrIsaacs"
+}

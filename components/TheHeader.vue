@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { title } from '../config/app.json'
+
 const { locale, setLocale } = useI18n()
 const menu = ref(false)
 
@@ -19,7 +21,7 @@ const closeMenu = () => {
         to="/"
         @click="closeMenu()"
       >
-        Manic
+        {{ title }}
       </NuxtLink>
       <nav>
         <ContentNavigation v-slot="{ navigation }">

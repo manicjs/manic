@@ -1,13 +1,12 @@
 <script setup lang="ts">
+import { title } from './config/app.json'
+
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - Manic` : 'Manic';
+    return titleChunk ? `${titleChunk} - ${title}` : title;
   },
-  meta: [
-    { name: 'description', content: 'nuxt full static client' }
-  ],
   bodyAttrs: {
-    "app-name": 'Manic'
+    "app-name": title
   }
 })
 </script>
