@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://mrisaacs.org",
+  "baseUrl": "https://manic.js.org",
   "head": {
     "meta": [
       {
@@ -25,5 +25,5 @@
       }
     ]
   },
-  "title": "MrIsaacs"
+  "title": "Manic"
 }
